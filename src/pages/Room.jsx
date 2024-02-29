@@ -13,21 +13,25 @@
     }
 
    return (
-     <div>
-        <div>
+     <div className='container'> 
+        <div className='room--container'>
+            <div>
             {
                 messages.map((message)=>{
                      return(
-                        <div key={message.$id}>
-                        <div>
-                            <span>{message.$createdAt}</span>
-                            </div><div>
+                        
+                        <div key={message.$id} className='messages--wrapper'>
+                        <div className='message--header'>
+                            <small className="message-timestamp">{message.$createdAt}</small>
+                            </div>
+                            <div className='message--body'>
                             <span>{message.body}</span>
                             </div>
                      </div>
                      )
                 })
             }
+            </div>
         </div>
      </div>
    )
