@@ -1,6 +1,6 @@
  import React, { useEffect, useState } from 'react'
  import { databases ,DATABASE_ID,COLLECTION_ID_MESSSAGE} from '../appwriteconfig'
- import { ID } from 'appwrite' 
+ import { ID,Query } from 'appwrite' 
  const Room = () => {
     const [messages,setMessages]=useState([]);
     const [messageBody,setMessageBody]=useState('');
@@ -19,16 +19,32 @@
             COLLECTION_ID_MESSSAGE,
             ID.unique(),
             payload
+           
         )
         console.log('Created!',response)
+        setMessages(PrevState=>[response,...messages])
         setMessageBody('')
      }
     const getMessages=async ()=>{
-        const response=await databases.listDocuments(DATABASE_ID,COLLECTION_ID_MESSSAGE);
+        const response=await databases.listDocuments(
+            DATABASE_ID,
+            COLLECTION_ID_MESSSAGE,
+            [
+                Query.orderDesc('$createdAt'),
+                Query.limit(5)
+            ]
+            );
         console.log('RESPONSE:',response)
         setMessages(response.documents)
     }
-
+    const deleteMessage =async(message_id)=>{
+        databases.deleteDocument(
+            DATABASE_ID,
+            COLLECTION_ID_MESSSAGE,
+            message_id
+            );
+            setMessages(prevState=>messages.filter(message=>message.$id !==message_id))
+    }
    return (
      <div className='container'> 
         <div className='room--container'>
@@ -55,7 +71,8 @@
                         
                         <div key={message.$id} className='message--wrapper'>
                         <div className='message--header'>
-                            <small className="message-timestamp">{message.$createdAt}</small>
+                            <small className="message-timestamp">{new Date(message.$createdAt).toLocaleString()}</small>
+                            <button onClick={()=>{deleteMessage(message.$id)}}>X</button>
                             </div>
                             <div className='message--body'>
                             <span>{message.body}</span>
