@@ -1,11 +1,16 @@
  import React, { useEffect, useState } from 'react'
- import { databases ,DATABASE_ID,COLLECTION_ID_MESSSAGE} from '../appwriteconfig'
+ import client,{ databases ,DATABASE_ID,COLLECTION_ID_MESSSAGE} from '../appwriteconfig'
  import { ID,Query } from 'appwrite' 
  const Room = () => {
     const [messages,setMessages]=useState([]);
     const [messageBody,setMessageBody]=useState('');
      useEffect(()=>{
         getMessages()
+
+        client.subscribe( `databases.${DATABASE_ID}.collections.${COLLECTION_ID_MESSSAGE}.documents`,  response => {
+            // Callback will be executed on changes for documents A and all files.
+            console.log('Real Time:',response);
+        });
      },[])
 
      const handleSubmit=async (e)=>{
