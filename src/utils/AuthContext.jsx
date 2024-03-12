@@ -32,7 +32,7 @@ export const AuthProvider=({children})=>{
             console.log(response)
             const accountDetails=await account.get();
             setUser(accountDetails);
-            navigate('/room')
+            navigate('/')
             
         }catch(error){
             console.error(error)
