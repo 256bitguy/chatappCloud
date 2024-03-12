@@ -1,6 +1,7 @@
- import React, { useEffect, useState } from 'react'
+ import   { useEffect, useState } from 'react'
  import client,{ databases ,DATABASE_ID,COLLECTION_ID_MESSSAGE} from '../appwriteconfig'
- import { ID,Query } from 'appwrite' 
+ import { ID,Query } from 'appwrite' ;
+ import Header from "../components/Header"
  const Room = () => {
     const [messages,setMessages]=useState([]);
     const [messageBody,setMessageBody]=useState('');
@@ -52,8 +53,8 @@
     }
    return (
      <div className='container'> 
+            <Header/>
         <div className='room--container'>
-
             <form onSubmit={handleSubmit} id="message--form">
             <div>
                 <textarea 

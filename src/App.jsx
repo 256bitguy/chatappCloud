@@ -13,7 +13,7 @@ function App() {
           <Routes>
             <Route path='/login' element={<LoginPage/>} />
             <Route element={<PrivateRoutes/>}>
-            <Route path='/' element={<Room/>} />
+            <Route path='/room' element={<Room/>} />
             </Route>
           </Routes>
         </AuthProvider>

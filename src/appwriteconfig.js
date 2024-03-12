@@ -10,5 +10,5 @@ client
     .setProject('65dfe0638ef7c1e37be1');
 
  export  const databases=new Databases(client); 
-export const account =new Account(client);
+export const account=new Account(client);
 export default client;
