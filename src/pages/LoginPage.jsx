@@ -1,6 +1,6 @@
 import  React, { useEffect, useState } from 'react'
 import { userAuth } from '../utils/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
   const { user, handleUserLogin } = userAuth();
@@ -24,7 +24,9 @@ const LoginPage = () => {
   
   return (
     <div className="auth--container ">
-      <p>67vivekraj@gmail.com and qwert12345</p>
+     <div className='form--wrapper'>
+     <p>67vivekraj@gmail.com and qwert12345</p>
+     </div>
         <div className='form--wrapper'>
           <form onSubmit={(e)=>{handleUserLogin(e,credentials)}}>
             <div className='field--wrapper'>
@@ -52,6 +54,7 @@ const LoginPage = () => {
               type="submit" value="Login"  />
             </div>
           </form>
+          <p>Don't have an account? Register <Link to="/register">here</Link></p>
         </div>
     </div>
   )

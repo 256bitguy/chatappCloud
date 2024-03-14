@@ -2,7 +2,9 @@
  import client,{ databases ,DATABASE_ID,COLLECTION_ID_MESSSAGE} from '../appwriteconfig'
  import { ID,Query } from 'appwrite' ;
  import Header from "../components/Header"
+import { userAuth } from '../utils/AuthContext';
  const Room = () => {
+    const {user}=userAuth()
     const [messages,setMessages]=useState([]);
     const [messageBody,setMessageBody]=useState('');
      useEffect(()=>{
@@ -18,6 +20,8 @@
         e.preventDefault()
 
         let payload={
+            user_id:user.$id,
+            username:user.name,
             body:messageBody
         }
         let response =await databases.createDocument(
