@@ -24,9 +24,7 @@ const LoginPage = () => {
   
   return (
     <div className="auth--container ">
-     <div className='form--wrapper'>
-     <p>67vivekraj@gmail.com and qwert12345</p>
-     </div>
+     
         <div className='form--wrapper'>
           <form onSubmit={(e)=>{handleUserLogin(e,credentials)}}>
             <div className='field--wrapper'>

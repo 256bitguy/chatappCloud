@@ -81,7 +81,15 @@ import { userAuth } from '../utils/AuthContext';
                         
                         <div key={message.$id} className='message--wrapper'>
                         <div className='message--header'>
-                            <small className="message-timestamp">{new Date(message.$createdAt).toLocaleString()}</small>
+                            <p>
+                                {message?.username ?(
+                                    <span>{message.username}</span>
+                                ):(
+                                    <span>Anonymous user</span>
+                                )}
+                                                            <small className="message-timestamp">{new Date(message.$createdAt).toLocaleString()}</small>
+
+                            </p>
                             <button onClick={()=>{deleteMessage(message.$id)}}>X</button>
                             </div>
                             <div className='message--body'>
