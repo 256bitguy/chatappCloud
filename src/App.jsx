@@ -4,7 +4,7 @@ import { AuthProvider } from './utils/AuthContext'
 import {BrowserRouter as Router, Routes,Route} from 'react-router-dom'
 import LoginPage from "./pages/LoginPage"
 import PrivateRoutes from './components/PrivateRoutes'
-
+import RegisterPage from './pages/RegisterPage'
 function App() {
   return (
     <>
@@ -12,6 +12,8 @@ function App() {
         <AuthProvider> 
           <Routes>
             <Route path='/login' element={<LoginPage/>} />
+            <Route path='/register' element={<LoginPage/>} />
+
             <Route element={<PrivateRoutes/>}>
             <Route path='/' element={<Room/>} />
             </Route>

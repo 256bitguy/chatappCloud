@@ -37,7 +37,7 @@
             COLLECTION_ID_MESSSAGE,
             [
                 Query.orderDesc('$createdAt'),
-                Query.limit(5)
+                Query.limit(9)
             ]
             );
         console.log('RESPONSE:',response)

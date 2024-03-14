@@ -39,8 +39,9 @@ export const AuthProvider=({children})=>{
         }
     }
     const handleLogout=async ()=>{
-        await account.deleteSession('current')
-        setUser(null)
+        await account.deleteSession('current');
+        console.log("error")
+        setUser(null);
     }
     const contextData ={
         user,handleUserLogin,handleLogout
